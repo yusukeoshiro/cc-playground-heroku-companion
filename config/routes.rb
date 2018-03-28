@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
 
 	post 'api/login' => 'api#login'
-	post 'api/user' => 'api#user_new'
+	post 'api/user'  => 'api#user_new'
+	get 'api/user/:user_id' => 'api#user_get'
 
 
-	
-	
+
 	# The priority is based upon order of creation: first created -> highest priority.
 	# See how all your routes lay out with "rake routes".
 

@@ -7,7 +7,7 @@ class ApiController < ApplicationController
 		payload = JSON.parse request.raw_post
 		user_name = payload["user_name"]
 		password = payload["password"]
-		user = User.where("user_name = ? AND password = ?", user_name, password)		
+		user = User.where("user_name = ? AND password = ?", user_name, password)
 		render :json => user || {}
 	end
 
@@ -19,8 +19,8 @@ class ApiController < ApplicationController
 		user_name = payload["user_name"]
 		password = payload["password"]
 		user = User.find_by_user_name user_name
-		if user		
-			render :json => {"error" => "user already exists"}, :status => :bad_request	
+		if user
+			render :json => {"error" => "user already exists"}, :status => :bad_request
 		else
 			user = User.new
 			user.user_name = user_name
@@ -28,8 +28,13 @@ class ApiController < ApplicationController
 			user.save
 			render :json => user || {}
 		end
+	end
 
-		
+
+	def user_get
+		user_id = params[:user_id]
+		user = User.find_by_id user_id
+		render :json => user || {}
 	end
 
 
