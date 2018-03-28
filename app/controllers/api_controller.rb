@@ -34,6 +34,14 @@ class ApiController < ApplicationController
 	def user_get
 		user_id = params[:user_id]
 		user = User.find_by_id user_id
+
+		if user.count.present?
+			user.count += 1
+		else
+			user.count = 1
+		end
+		user.save
+
 		render :json => user || {}
 	end
 
